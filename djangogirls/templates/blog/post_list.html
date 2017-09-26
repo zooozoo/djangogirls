@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,15 +7,24 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-    <title>Document</title>
+    <link rel="stylesheet" href="{%  static 'css/blog.css' %}">
+    <title>Suba Siba</title>
 </head>
 <body>
-<h1>Post List</h1>
+<div class="container">
+    <h2><a href="">siba Post</a></h2>
+    <div class="post-container">
+        {% for post in posts %}
+            <div class="post">
+            <h4 class="post-title">{{ post.title }}</h4>
+            <p class="content">{{ post.content|linebreaksbr}}</p>
+            <p class="right-text">{{ post.published_date }}</p>
+            <p class="right-text">{{  post.author.username  }}</p>
 
-{% for post in posts %}
-<h3>{{ post.title }}</h3>
-<div>{{ post.content|linebreaksbr|truncatewords:30 }}</div>
-{% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
 
 </body>
 </html>
