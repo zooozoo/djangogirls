@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 
 class Post(models.Model):
@@ -11,3 +12,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def publish(self):
+        published_date = timezone.now()
+        self.save()
+
+    def hide(self):
+        published_date = None
+        self.save()
